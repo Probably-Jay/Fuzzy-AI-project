@@ -9,11 +9,13 @@ public class KartControls : KartGame.KartSystems.BaseInput
     public string Vertical = "Vertical";
 
     [SerializeField] FuzzyCartController fuzzyCartController;
+    [SerializeField] RBSKartController RBSCartController;
 
     public enum ControlMode
     {
         Keyboard
-            , Fuzzy
+        , Fuzzy
+        , RuleBasedSystem
     }
 
     public ControlMode controlMode;
@@ -31,11 +33,20 @@ public class KartControls : KartGame.KartSystems.BaseInput
                 };
             case ControlMode.Fuzzy:
                 return GetFuzzyInput();
+            case ControlMode.RuleBasedSystem:
+                return GetRBSInput();
             default:
                 return Vector2.zero;
         }
 
 
+    }
+
+    private Vector2 GetRBSInput()
+    {
+        var (turnInput, driveInput) = RBSCartController.GetInstructions();
+
+        return new Vector2(turnInput, driveInput);
     }
 
     private Vector2 GetFuzzyInput()
