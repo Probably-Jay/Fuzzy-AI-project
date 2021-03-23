@@ -59,20 +59,20 @@ namespace FuzzyLogic
         }
 
         /// <summary>
-        /// Logical-Not operator, <c>1 - value</c>
+        /// Logical-Not operator, <c>1 - <paramref name="number"/></c>
         /// </summary>
-        public static FuzzyNumber operator !(FuzzyNumber n)
+        public static FuzzyNumber operator !(FuzzyNumber number)
         {
             var negation = new FuzzyNumber();
             foreach (FuzzyUtility.FuzzyStates state in System.Enum.GetValues(typeof(FuzzyUtility.FuzzyStates)))
             {
-                negation[state] = 1f - n[state];
+                negation[state] = 1f - number[state];
             }
             return negation;
         }
 
         /// <summary>
-        /// Logical-Or operator, <see cref="UnityEngine.Mathf.Max(float, float)"/> of <c>value</c>
+        /// Logical-Or operator, <see cref="UnityEngine.Mathf.Max(float, float)"/> of <paramref name="a"/> and <paramref name="b"/>
         /// </summary>
         public static FuzzyNumber operator |(FuzzyNumber a,FuzzyNumber b)
         {
@@ -85,7 +85,7 @@ namespace FuzzyLogic
         }
 
         /// <summary>
-        /// Logical-And operator, <see cref="UnityEngine.Mathf.Min(float, float)"/> of <c>value</c>
+        /// Logical-And operator, <see cref="UnityEngine.Mathf.Min(float, float)"/> of <paramref name="a"/> and <paramref name="b"/>
         /// </summary>
         public static FuzzyNumber operator &(FuzzyNumber a,FuzzyNumber b)
         {

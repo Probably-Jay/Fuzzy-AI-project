@@ -30,6 +30,7 @@ namespace FuzzyLogic
 
         [SerializeField] private FunctionCurve functionCurve;
         [SerializeField] private FuzzyRulesList fuzzyRulesList;
+        [SerializeField] private DefuzzificationMethod defuzzificationMethod;
 
         /// <summary>
         /// The input curve used to fuzzify data
@@ -63,7 +64,6 @@ namespace FuzzyLogic
             }
         }
 
-        private DefuzzificationMethod defuzzificationMethod;
 
         private void Awake()
         {
