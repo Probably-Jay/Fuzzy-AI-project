@@ -9,20 +9,23 @@ namespace FuzzyLogic
     /// </summary>
     public class CrispInput 
     {
-        
+        public CrispInput()
+        {
+            variables = new float[NumberOfVariables];
+        }
         internal CrispInput(float[] newValues)
         {
             variables = (float[])newValues.Clone();
         }
 
-        public const int NumberOfVariables = 3;
+        public const int NumberOfVariables = 5;
         public enum Inputs
         {
-            Input1
-            , Input2
-            , Input3
-            //, Input4
-            //, Input5
+            Speed
+            , ForwardDistance
+            , RightDistance
+            , LeftDistance
+            , ForwardSurfaceNormal
             //, Input6
             //, Input7
             //, Input8
@@ -57,11 +60,11 @@ namespace FuzzyLogic
         }
 
 
-        public const int NumberOfVariables = 1;
+        public const int NumberOfVariables = 2;
         public enum Outputs
         {
-            Output1
-            //, Output2
+            ForwardBackwards
+            , LeftRight
             //, Output3
             //, Output4
             //, Output5

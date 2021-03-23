@@ -11,6 +11,9 @@ using UnityEditorInternal;
 
 namespace FuzzyLogic
 {
+    /// <summary>
+    /// Scriptable object that holds a rule base for use by 
+    /// </summary>
     [CreateAssetMenu(menuName = "Rules/Fuzzy Rules")]
     public class FuzzyRulesList : ScriptableObject
     {

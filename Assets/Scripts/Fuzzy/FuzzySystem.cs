@@ -5,10 +5,14 @@ using UnityEngine;
 
 namespace FuzzyLogic
 {
-
+    /// <summary>
+    /// Main interface to the fuzzy logic system. Responsible for taking <see cref="FuzzyLogic.CrispInput"/> and returning <see cref="FuzzyLogic.CrispOutput"/>.
+    /// Controls the <see cref="FuzzyLogic.Fuzzifier"/>, <see cref="FuzzyLogic.InferenceEngine"/>, and <see cref="FuzzyLogic.Defuzzifier"/>.
+    /// Must be provided with <see cref="FuzzyLogic.FunctionCurve"/> and <see cref="FuzzyLogic.FuzzyRulesList"/>
+    /// </summary>
     public class FuzzySystem : MonoBehaviour
     {
-        private Fuzifier fuzifier = new Fuzifier();
+        private Fuzzifier fuzifier = new Fuzzifier();
         private InferenceEngine inferenceEngine = new InferenceEngine();
         private Defuzzifier defuzzifier = new Defuzzifier();
 

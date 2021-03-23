@@ -18,6 +18,9 @@ namespace FuzzyLogic
             }
         }
 
+        /// <summary>
+        /// The number of input variables, defined by <see cref="FuzzyLogic.CrispInput"/>
+        /// </summary>
         public const int NumberOfVariables = CrispInput.NumberOfVariables;
 
         private FuzzyNumber[] values;
@@ -45,6 +48,9 @@ namespace FuzzyLogic
             }
         }
 
+        /// <summary>
+        /// The number of output variables, defined by <see cref="FuzzyLogic.CrispOutput"/>
+        /// </summary>
         public const int NumberOfVariables = CrispOutput.NumberOfVariables;
 
         private FuzzyNumber[] values = new FuzzyNumber[NumberOfVariables];

@@ -8,13 +8,20 @@ using UnityEngine;
 namespace FuzzyLogic
 {
     /// <summary>
-    /// Applies the rule base on many fuzzy sets to determine behaviour
+    /// Applies the <see cref="FuzzyLogic.FuzzyRulesList"/> to <see cref="FuzzyLogic.FuzzyInputData"/> and returns <see cref="FuzzyLogic.FuzzyOutputData"/>
     /// </summary>
     internal class InferenceEngine
     {
-
+        /// <summary>
+        /// The rules which will be used to drive the inference engine
+        /// </summary>
         public FuzzyRulesList fuzzyRules;
 
+        /// <summary>
+        /// Applies the rulset in <see cref="FuzzyLogic.InferenceEngine.fuzzyRules"/> to <paramref name="fuzzyInput"/> and produces a new <see cref="FuzzyLogic.FuzzyOutputData"/> based on these rules
+        /// </summary>
+        /// <param name="fuzzyInput">The fussified input given by <see cref="FuzzyLogic.Fuzzifier.Fuzzify(CrispInput)"/> on which the rules will be applied</param>
+        /// <returns>A new <see cref="FuzzyLogic.FuzzyOutputData"/> based on these rules</returns>
         public FuzzyOutputData ApplyRulset(FuzzyInputData fuzzyInput)
         {
             List<FuzzyOutputData> unaggragatedFuzzyOuputs = new List<FuzzyOutputData>();

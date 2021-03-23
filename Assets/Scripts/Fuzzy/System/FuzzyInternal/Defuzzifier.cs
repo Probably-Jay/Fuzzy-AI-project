@@ -5,20 +5,36 @@ using UnityEngine;
 
 namespace FuzzyLogic
 {
-
+    /// <summary>
+    /// Class that produces <see cref="FuzzyLogic.CrispOutput"/> based on the <see cref="FuzzyLogic.FuzzyOutputData"/> given by <see cref="FuzzyLogic.InferenceEngine"/>
+    /// </summary>
     internal class Defuzzifier
     {
 
-       // public FunctionCurve outputCurve;
 
-        public enum DefuzificationMethod
+        /// <summary>
+        /// The method by which defuzzification will take place. 
+        /// <see cref="FuzzyLogic.Defuzzifier.DefuzzificationMethod.Maximum"/>: The largest (most sure) value is chosen
+        /// <see cref="FuzzyLogic.Defuzzifier.DefuzzificationMethod.CenterOfMass"/>: A weighted center-of-mass is calculated based on all inputs 
+        /// </summary>
+        public enum DefuzzificationMethod
         {
             Maximum
             , CenterOfMass
         }
 
-        public DefuzificationMethod defuzificationMethod = DefuzificationMethod.CenterOfMass;
+        /// <summary>
+        /// The method by which defuzzification will take place. 
+        /// See <see cref="FuzzyLogic.Defuzzifier.DefuzzificationMethod"/>
+        /// </summary>
+        public DefuzzificationMethod defuzificationMethod = DefuzzificationMethod.CenterOfMass;
 
+        /// <summary>
+        /// Takes <see cref="FuzzyLogic.FuzzyOutputData"/> and from a call of <see cref="FuzzyLogic.InferenceEngine.ApplyRulset(FuzzyInputData)"/> 
+        /// and returns a new into <see cref="FuzzyLogic.CrispOutput"/> using the current method of <see cref="FuzzyLogic.Defuzzifier.defuzificationMethod"/>
+        /// </summary>
+        /// <param name="fuzzyOutput">The fuzzy data to be defuzzified</param>
+        /// <returns>A <see cref="FuzzyLogic.CrispOutput"/> which can be used by the external system</returns>
         public CrispOutput Defuzzify(FuzzyOutputData fuzzyOutput)
         {
             CrispOutput crispOutput = new CrispOutput();
@@ -34,9 +50,9 @@ namespace FuzzyLogic
         {
             switch (defuzificationMethod)
             {
-                case DefuzificationMethod.Maximum:
+                case DefuzzificationMethod.Maximum:
                     return Maximum(fuzzyNumber);
-                case DefuzificationMethod.CenterOfMass:
+                case DefuzzificationMethod.CenterOfMass:
                     return CenterOfMass(fuzzyNumber);
                 default:
                     return -1;
