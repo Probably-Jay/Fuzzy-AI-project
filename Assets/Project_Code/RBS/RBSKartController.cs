@@ -85,9 +85,9 @@ public class RBSKartController : MonoBehaviour
         var output = (value: 0f, sum: 0f);
 
 
-        if (forwardDistance >= 2.5 && surfaceNormal < 0)
+        if (forwardDistance >= 5 && surfaceNormal < 0)
         {
-            output.value += -0.5f; output.sum += 1;
+            output.value += -1f; output.sum += 1;
         } 
         
         if (forwardDistance >= 0 && forwardDistance < 2.5f && surfaceNormal < 0)
@@ -96,9 +96,9 @@ public class RBSKartController : MonoBehaviour
         }  
         
         
-        if (forwardDistance >= 2.5 && surfaceNormal > 0)
+        if (forwardDistance >= 5 && surfaceNormal > 0)
         {
-            output.value += 0.5f; output.sum += 1;
+            output.value += 1f; output.sum += 1;
         } 
         
         if (forwardDistance >= 0 && forwardDistance < 2.5f && surfaceNormal > 0)
@@ -107,12 +107,12 @@ public class RBSKartController : MonoBehaviour
         }
 
 
-        if (rightDistance < 0.1f || leftDistance < -0.9f)
+        if ((rightDistance < 1.25f && rightDistance > -0.1f) || leftDistance < -0.9f)
         {
             output.value += -1f; output.sum += 1;
         }
 
-        if (leftDistance < 0.1f || rightDistance < -0.9f)
+        if ((leftDistance < 1.25f && leftDistance > -0.1f) || rightDistance < -0.9f)
         {
             output.value += +1f; output.sum += 1;
         }
@@ -123,7 +123,8 @@ public class RBSKartController : MonoBehaviour
 
     }
 
-    private float EvauateForward(Dictionary<Inputs, float> input) => 1;
+
+    private float EvauateForward(Dictionary<Inputs, float> input) => 1; // always drive
 
     private Dictionary<Inputs,float> GenerateInputFromSensors()
     {

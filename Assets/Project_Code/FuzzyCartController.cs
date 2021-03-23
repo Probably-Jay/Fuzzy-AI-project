@@ -13,6 +13,7 @@ public class FuzzyCartController : MonoBehaviour
 
     [SerializeField] FuzzySystem fuzzySystem;
 
+
     [SerializeField] bool debug = false;
 
     [SerializeField] float hightSpeed = 10;

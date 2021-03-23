@@ -12,22 +12,12 @@ namespace FuzzyLogic
     {
 
 
-        /// <summary>
-        /// The method by which defuzzification will take place. 
-        /// <see cref="FuzzyLogic.Defuzzifier.DefuzzificationMethod.Maximum"/>: The largest (most sure) value is chosen
-        /// <see cref="FuzzyLogic.Defuzzifier.DefuzzificationMethod.CenterOfMass"/>: A weighted center-of-mass is calculated based on all inputs 
-        /// </summary>
-        public enum DefuzzificationMethod
-        {
-            Maximum
-            , CenterOfMass
-        }
 
         /// <summary>
         /// The method by which defuzzification will take place. 
-        /// See <see cref="FuzzyLogic.Defuzzifier.DefuzzificationMethod"/>
+        /// See <see cref="FuzzyLogic.FuzzySystem.DefuzzificationMethod"/>
         /// </summary>
-        public DefuzzificationMethod defuzificationMethod = DefuzzificationMethod.CenterOfMass;
+        public FuzzySystem.DefuzzificationMethod defuzificationMethod = FuzzySystem.DefuzzificationMethod.CenterOfMass;
 
         /// <summary>
         /// Takes <see cref="FuzzyLogic.FuzzyOutputData"/> and from a call of <see cref="FuzzyLogic.InferenceEngine.ApplyRulset(FuzzyInputData)"/> 
