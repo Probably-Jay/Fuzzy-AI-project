@@ -9,7 +9,9 @@ public class KartSensor : MonoBehaviour
 
     public const float highSpeed = 10;
 
-    public Vector3 KartForward => rb.transform.forward;
+    public Vector3 KartForward => transform.forward;
+    public Vector3 KartRight => transform.right;
+    public Vector3 KartLeft => -transform.right;
 
 
     public float Speed => rb.velocity.magnitude;
@@ -77,13 +79,13 @@ public class KartSensor : MonoBehaviour
 
 
 
-    private Ray ForwardRay => new Ray(transform.position, Vector3.forward);
+    private Ray ForwardRay => new Ray(transform.position, KartForward);
     private float forwardRayLength = 10;
 
-    private Ray RightRay => new Ray(transform.position, Vector3.right);
+    private Ray RightRay => new Ray(transform.position, KartRight);
     private float rightRayLength = 5;
 
-    private Ray LeftRay => new Ray(transform.position, -Vector3.right);
+    private Ray LeftRay => new Ray(transform.position, KartLeft);
     private float leftRayLength = 5;
 
     private void Awake()

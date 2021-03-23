@@ -26,6 +26,8 @@ public class FuzzyCartController : MonoBehaviour
     [SerializeField] float neutralLeftDistance = 0;
 
 
+    float angle;
+
     private void Awake()
     {
         sensor = GetComponent<KartSensor>();
@@ -65,6 +67,7 @@ public class FuzzyCartController : MonoBehaviour
         {
             Debug.Log($"Output: {output.ToString()} -> {outputVals[output]}");
         }
+        Debug.Log(angle);
     }
 
     private void DebugOutLots(CrispInput inputVals, CrispOutput outputVals)
@@ -118,11 +121,11 @@ public class FuzzyCartController : MonoBehaviour
         float normalisedForwardSurfaceNormal;
         if (surfaveNormal.HasValue)
         {
-            Vector2 ourNormal = -sensor.KartForward;
-            Vector2 surfaceNormal = surfaveNormal.Value;
+            Vector2 ourNormal = -(new Vector2(sensor.KartForward.x, sensor.KartForward.z));
+            Vector2 surfaceNormal = new Vector2(surfaveNormal.Value.x, surfaveNormal.Value.z);
 
-            var angle = Vector2.SignedAngle(ourNormal, surfaceNormal); // positive is to the right, negative is to the left
-            var angleMag = Mathf.Abs(angle);
+            angle = Vector2.SignedAngle(surfaceNormal, ourNormal); // positive is to the right, negative is to the left
+            //var angleMag = Mathf.Abs(angle);
 
             angle *= -1; // reflect angle difference round, positive right negative left from cart's perspective now
 

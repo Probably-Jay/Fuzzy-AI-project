@@ -34,34 +34,6 @@ MonoBehaviour:
     consequent:
       output: 0
       state: 0
-  - predicate:
-      input: 2
-      isOrIsNot: 0
-      state: 2
-    consequent:
-      output: 1
-      state: 0
-  - predicate:
-      input: 3
-      isOrIsNot: 0
-      state: 2
-    consequent:
-      output: 1
-      state: 4
-  - predicate:
-      input: 2
-      isOrIsNot: 0
-      state: 0
-    consequent:
-      output: 1
-      state: 3
-  - predicate:
-      input: 3
-      isOrIsNot: 0
-      state: 0
-    consequent:
-      output: 1
-      state: 1
   logicRules:
   - predicate1:
       input: 1
@@ -120,6 +92,18 @@ MonoBehaviour:
       input: 4
       isOrIsNot: 0
       state: 3
+    consequent:
+      output: 1
+      state: 3
+  - predicate1:
+      input: 1
+      isOrIsNot: 0
+      state: 3
+    logicalRelationship: 0
+    predicate2:
+      input: 4
+      isOrIsNot: 0
+      state: 4
     consequent:
       output: 1
       state: 3

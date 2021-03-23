@@ -647,7 +647,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fuzzySystem: {fileID: 9066478544039467508}
   hightSpeed: 10
-  lowSpeed: 0
+  neutralSpeed: 0
   largeForwardDistance: 10
   neutralForwardDistance: 0
   largeRightDistance: 10
