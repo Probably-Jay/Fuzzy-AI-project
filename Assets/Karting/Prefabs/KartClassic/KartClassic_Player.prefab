@@ -446,12 +446,12 @@ GameObject:
   - component: {fileID: 3934862071804020767}
   - component: {fileID: 3934862071804020760}
   - component: {fileID: 2048534179}
-  - component: {fileID: 438660967275396939}
   - component: {fileID: 132457197}
   - component: {fileID: 5159474304760194895}
   - component: {fileID: 8129229389282824053}
   - component: {fileID: 7412365025141639715}
   - component: {fileID: 9066478544039467508}
+  - component: {fileID: 4908153231819459352}
   m_Layer: 2
   m_Name: KartClassic_Player
   m_TagString: Player
@@ -548,20 +548,6 @@ MonoBehaviour:
   Kart: {fileID: 3934862071804020760}
   SteeringParam: Steering
   GroundedParam: Grounded
---- !u!114 &438660967275396939
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3934862071804020761}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f292ffb948323c49ac31e54ff737ea2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Horizontal: Horizontal
-  Vertical: Vertical
 --- !u!114 &132457197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -646,6 +632,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fuzzySystem: {fileID: 9066478544039467508}
+  debug: 0
   hightSpeed: 10
   neutralSpeed: 0
   largeForwardDistance: 10
@@ -668,6 +655,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   functionCurve: {fileID: 11400000, guid: 061bd0688e86e6248838d4c5d18741d6, type: 2}
   fuzzyRulesList: {fileID: 11400000, guid: c7305cfb5fd75fa4281616dd7a6b0f45, type: 2}
+--- !u!114 &4908153231819459352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3934862071804020761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 274ec3683a12af94daa14bc45e20de5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Horizontal: Horizontal
+  Vertical: Vertical
+  fuzzyCartController: {fileID: 7412365025141639715}
+  controlMode: 1
 --- !u!1 &3934862071846582731
 GameObject:
   m_ObjectHideFlags: 0

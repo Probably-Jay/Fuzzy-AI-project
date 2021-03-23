@@ -45,7 +45,7 @@ public class FuzzyCartController : MonoBehaviour
     /// Based off the current values from <see cref="FuzzyCartController.sensor"/>
     /// </summary>
     /// <returns></returns>
-    private (float, float) GetInstructions()
+    public (float, float) GetInstructions()
     {
         CrispInput input = GenerateInputFromSensors();
         CrispOutput output = fuzzySystem.EvaluateFuzzyLogic(input);
