@@ -13,6 +13,8 @@ public class FuzzyCartController : MonoBehaviour
 
     [SerializeField] FuzzySystem fuzzySystem;
 
+    [SerializeField] bool debug = false;
+
     [SerializeField] float hightSpeed = 10;
     [SerializeField] float neutralSpeed = 0;
 
@@ -37,8 +39,13 @@ public class FuzzyCartController : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
+
+    /// <summary>
+    /// Returns <c>(float, float)</c> tuple representing <see cref="FuzzyCartController.fuzzySystem"/>'s confidence that actions (drive, turn) should be taken, and the polarity of those actions. 
+    /// Based off the current values from <see cref="FuzzyCartController.sensor"/>
+    /// </summary>
+    /// <returns></returns>
+    private (float, float) GetInstructions()
     {
         CrispInput input = GenerateInputFromSensors();
         CrispOutput output = fuzzySystem.EvaluateFuzzyLogic(input);
@@ -46,16 +53,13 @@ public class FuzzyCartController : MonoBehaviour
         if (!Input.GetKey(KeyCode.Space))
         {
             DebugOutLight(output);
-
         }
-        else
+        else if (debug)
         {
-
-
-
             DebugOutLots(input, output);
         }
 
+        return (output[CrispOutput.Outputs.ForwardBackwards], output[CrispOutput.Outputs.LeftRight]);
 
     }
 
