@@ -11,9 +11,14 @@ namespace FuzzyLogic
     {
 
 
-
+        /// <summary>
+        /// Number of states a fuzzy number can be in
+        /// </summary>
         public const int NumberOfMemberships = 5;
 
+        /// <summary>
+        /// The satates that a fuzzy number can be in, and their normalised values
+        /// </summary>
         public static readonly Dictionary<FuzzyUtility.FuzzyStates, float> NormalisedStateValues = new Dictionary<FuzzyUtility.FuzzyStates, float>() 
         {
             {FuzzyUtility.FuzzyStates.LP,   1f }
@@ -26,38 +31,20 @@ namespace FuzzyLogic
 
         private float[] values = new float[NumberOfMemberships];
 
+        /// <summary>
+        /// Indexer to the membership-value of this number for each state
+        /// </summary>
+        /// <param name="state">A <see cref="FuzzyLogic.FuzzyUtility.FuzzyStates"/></param>
+        /// <returns>A float value representing membership</returns>
         public float this[FuzzyUtility.FuzzyStates state]
         {
             get { return values[(int)state]; }
             set { values[(int)state] = value; }
         }
 
-        public void Normalise()
-        {
-            float mag = Magnitude;
-
-            for (int i = 0; i < values.Length; i++)
-            {
-                values[i] /= mag;
-            }
-
-        }
-
-        public float Magnitude
-        {
-            get
-            {
-                float total = 0;
-                foreach (var value in values)
-                {
-                    total += value * value;
-                }
-
-                var mag = Mathf.Sqrt(total);
-                return mag;
-            }
-        }  
-        
+        /// <summary>
+        /// The sum of the membership amounts
+        /// </summary>
         public float Sum
         {
             get
@@ -71,10 +58,9 @@ namespace FuzzyLogic
             }
         }
 
-
-
-
-
+        /// <summary>
+        /// Logical-Not operator, <c>1 - value</c>
+        /// </summary>
         public static FuzzyNumber operator !(FuzzyNumber n)
         {
             var negation = new FuzzyNumber();
@@ -83,8 +69,11 @@ namespace FuzzyLogic
                 negation[state] = 1f - n[state];
             }
             return negation;
-        }     
-        
+        }
+
+        /// <summary>
+        /// Logical-Or operator, <see cref="UnityEngine.Mathf.Max(float, float)"/> of <c>value</c>
+        /// </summary>
         public static FuzzyNumber operator |(FuzzyNumber a,FuzzyNumber b)
         {
             var or = new FuzzyNumber();
@@ -93,8 +82,11 @@ namespace FuzzyLogic
                 or[state] = Mathf.Max(a[state], b[state]);
             }
             return or;
-        } 
-        
+        }
+
+        /// <summary>
+        /// Logical-And operator, <see cref="UnityEngine.Mathf.Min(float, float)"/> of <c>value</c>
+        /// </summary>
         public static FuzzyNumber operator &(FuzzyNumber a,FuzzyNumber b)
         {
             var and = new FuzzyNumber();
