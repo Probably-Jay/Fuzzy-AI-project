@@ -62,13 +62,6 @@ MonoBehaviour:
     consequent:
       output: 1
       state: 0
-  - predicate:
-      input: 3
-      isOrIsNot: 0
-      state: 0
-    consequent:
-      output: 1
-      state: 3
   logicRules:
   - predicate1:
       input: 1
