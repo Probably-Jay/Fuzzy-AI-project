@@ -46,6 +46,7 @@ public class FuzzyCartController : MonoBehaviour
     {
         CrispInput input = GenerateInputFromSensors();
         CrispOutput output = fuzzySystem.EvaluateFuzzyLogic(input);
+        
 
         if (!Input.GetKey(KeyCode.Space))
         {
@@ -56,8 +57,18 @@ public class FuzzyCartController : MonoBehaviour
             DebugOutLots(input, output);
         }
 
+        output = ValidateOutput(output);
+
         return (output[CrispOutput.Outputs.ForwardBackwards], output[CrispOutput.Outputs.LeftRight]);
 
+    }
+
+    private CrispOutput ValidateOutput(CrispOutput output)
+    {
+        if (!FuzzyUtility.ValidInstruction(output[CrispOutput.Outputs.LeftRight])){
+            output[CrispOutput.Outputs.LeftRight] = 0;
+        }
+        return output;
     }
 
     private void DebugOutLight(CrispOutput outputVals)

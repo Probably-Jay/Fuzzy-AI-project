@@ -17,65 +17,84 @@ namespace FuzzyLogic
     [CreateAssetMenu(menuName = "Rules/Fuzzy Rules")]
     public class FuzzyRulesList : ScriptableObject
     {
-
+        /// <summary>
+        /// The list of <see cref="FuzzyLogic.FuzzyRulesList.SimpleFuzzyRule"/>
+        /// </summary>
         public SimpleFuzzyRule[] simpleRules;
+        /// <summary>
+        /// The list of <see cref="FuzzyLogic.FuzzyRulesList.LogicalFuzzyRule"/>
+        /// </summary>
         public LogicalFuzzyRule[] logicRules;
-    }
 
-    [System.Serializable]
-    public class SimpleFuzzyRule
-    {
-        public FuzzyPredicate predicate = new FuzzyPredicate();
-
-        public FuzzyConsequent consequent = new FuzzyConsequent();
-    }
-
-    [System.Serializable]
-    public class LogicalFuzzyRule
-    {
-        public FuzzyPredicate predicate1 = new FuzzyPredicate();
-
-        public FuzzyPredicate.Logic logicalRelationship;
-
-        public FuzzyPredicate predicate2 = new FuzzyPredicate();
-
-
-        public FuzzyConsequent consequent = new FuzzyConsequent();
-    }
-
-    [System.Serializable]
-    public class FuzzyPredicate 
-    {
-        public enum IsOrIsNot
+        /// <summary>
+        /// A fuzzy rule in the form (<see cref="FuzzyLogic.FuzzyRulesList.FuzzyAnticedent"/> ⇒ <see cref="FuzzyLogic.FuzzyRulesList.FuzzyConsequent"/>)
+        /// </summary>
+        [System.Serializable]
+        public class SimpleFuzzyRule
         {
-            Is
-            , IsNot
+            public FuzzyAnticedent anticedent = new FuzzyAnticedent();
+
+            public FuzzyConsequent consequent = new FuzzyConsequent();
         }
 
-        public enum Logic
+        /// <summary>
+        /// A fuzzy rule in the form (<see cref="FuzzyLogic.FuzzyRulesList.FuzzyAnticedent"/> [<see cref="FuzzyLogic.FuzzyRulesList.FuzzyAnticedent.LogicalRelationship"/>] <see cref="FuzzyLogic.FuzzyRulesList.FuzzyAnticedent"/>  ⇒ <see cref="FuzzyLogic.FuzzyRulesList.FuzzyConsequent"/>)
+        /// </summary>
+        [System.Serializable]
+        public class LogicalFuzzyRule
         {
-            And
-            , Or
+            public FuzzyAnticedent anticedent1 = new FuzzyAnticedent();
+
+            public FuzzyAnticedent.LogicalRelationship logicalRelationship;
+
+            public FuzzyAnticedent anticedent2 = new FuzzyAnticedent();
+
+
+            public FuzzyConsequent consequent = new FuzzyConsequent();
         }
 
-        public CrispInput.Inputs input;
-        public FuzzyPredicate.IsOrIsNot isOrIsNot;
-        public FuzzyUtility.FuzzyStates state;
-    }
-    [System.Serializable]
+        /// <summary>
+        /// An anticedent phrase, in the form <see cref="FuzzyLogic.CrispInput.Inputs"/> [<see cref="FuzzyLogic.FuzzyRulesList.FuzzyAnticedent.IsOrIsNot"/>] in the state of <see cref="FuzzyLogic.FuzzyUtility.FuzzyStates"/> 
+        /// </summary>
+        [System.Serializable]
+        public class FuzzyAnticedent 
+        {
+            public enum IsOrIsNot
+            {
+                Is
+                , IsNot
+            }
 
-    public class FuzzyConsequent
-    {
-        public CrispOutput.Outputs output;
-        public FuzzyUtility.FuzzyStates state;
-    }
+            public enum LogicalRelationship
+            {
+                And
+                , Or
+            }
 
+            public CrispInput.Inputs input;
+            public FuzzyAnticedent.IsOrIsNot isOrIsNot;
+            public FuzzyUtility.FuzzyStates state;
+        }
+
+        /// <summary>
+        /// The consequent phrase, in the form <see cref="FuzzyLogic.CrispOutput.Outputs"/> is in the state of <see cref="FuzzyLogic.FuzzyUtility.FuzzyStates"/> 
+        /// </summary>
+        [System.Serializable]
+        public class FuzzyConsequent
+        {
+            public CrispOutput.Outputs output;
+            public FuzzyUtility.FuzzyStates state;
+        }
+    }
 
 
 
 
 #if UNITY_EDITOR
 
+    /// <summary>
+    /// A custom editor to set up the <see cref="FuzzyLogic.FuzzyRulesList"/> <see cref="UnityEngine.ScriptableObject"/>
+    /// </summary>
     [CustomEditor(typeof(FuzzyRulesList))]
     public class FuzzyRulesEditor : Editor
     {
@@ -133,15 +152,15 @@ namespace FuzzyLogic
         {
             SerializedProperty element = simpleList.serializedProperty.GetArrayElementAtIndex(index);
 
-            SerializedProperty predicate = element.FindPropertyRelative(nameof(SimpleFuzzyRule.predicate));
-            SerializedProperty consiquent = element.FindPropertyRelative(nameof(SimpleFuzzyRule.consequent));
+            SerializedProperty anticedent1 = element.FindPropertyRelative(nameof(FuzzyRulesList.SimpleFuzzyRule.anticedent));
+            SerializedProperty consiquent = element.FindPropertyRelative(nameof(FuzzyRulesList.SimpleFuzzyRule.consequent));
 
 
             EditorGUI.LabelField(new Rect(rect.x, rect.y, 15, EditorGUIUtility.singleLineHeight), "If");
 
             float currentOffset = 15;
 
-            currentOffset += DrawPredicate(rect, predicate, currentOffset);
+            currentOffset += DrawAnticedent1(rect, anticedent1, currentOffset);
 
             DrawConsiquent(rect, consiquent, currentOffset);
 
@@ -151,9 +170,9 @@ namespace FuzzyLogic
         {
             SerializedProperty element = logicList.serializedProperty.GetArrayElementAtIndex(index);
 
-            SerializedProperty predicate1 = element.FindPropertyRelative(nameof(LogicalFuzzyRule.predicate1));
-            SerializedProperty predicate2 = element.FindPropertyRelative(nameof(LogicalFuzzyRule.predicate2));
-            SerializedProperty consiquent = element.FindPropertyRelative(nameof(LogicalFuzzyRule.consequent));
+            SerializedProperty anticedent1 = element.FindPropertyRelative(nameof(FuzzyRulesList.LogicalFuzzyRule.anticedent1));
+            SerializedProperty anticedent2 = element.FindPropertyRelative(nameof(FuzzyRulesList.LogicalFuzzyRule.anticedent2));
+            SerializedProperty consiquent = element.FindPropertyRelative(nameof(FuzzyRulesList.LogicalFuzzyRule.consequent));
 
 
             EditorGUI.LabelField(new Rect(rect.x, rect.y, 15, EditorGUIUtility.singleLineHeight), "If");
@@ -161,11 +180,11 @@ namespace FuzzyLogic
 
             float currentOffset = 15;
 
-            currentOffset += DrawPredicate(rect, predicate1, currentOffset);
+            currentOffset += DrawAnticedent1(rect, anticedent1, currentOffset);
 
             currentOffset += DrawRelationship(rect, element, currentOffset);
 
-            currentOffset += DrawPredicate(rect, predicate2, currentOffset);
+            currentOffset += DrawAnticedent1(rect, anticedent2, currentOffset);
 
 
             DrawConsiquent(rect, consiquent, currentOffset);
@@ -174,23 +193,23 @@ namespace FuzzyLogic
         }
 
 
-        private static float DrawPredicate(Rect rect, SerializedProperty predicate1, float currentOffset)
+        private static float DrawAnticedent1(Rect rect, SerializedProperty anticedent1, float currentOffset)
         {
             EditorGUI.PropertyField(
                  new Rect(rect.x + currentOffset, rect.y, 110, EditorGUIUtility.singleLineHeight),
-                 predicate1.FindPropertyRelative(nameof(FuzzyPredicate.input)),
+                 anticedent1.FindPropertyRelative(nameof(FuzzyRulesList.FuzzyAnticedent.input)),
                  GUIContent.none
                 );
 
             EditorGUI.PropertyField(
                  new Rect(rect.x + currentOffset + 110, rect.y, 60, EditorGUIUtility.singleLineHeight),
-                 predicate1.FindPropertyRelative(nameof(FuzzyPredicate.isOrIsNot)),
+                 anticedent1.FindPropertyRelative(nameof(FuzzyRulesList.FuzzyAnticedent.isOrIsNot)),
                  GUIContent.none
                 );
 
             EditorGUI.PropertyField(
                  new Rect(rect.x + currentOffset + 170, rect.y, 40, EditorGUIUtility.singleLineHeight),
-                 predicate1.FindPropertyRelative(nameof(FuzzyPredicate.state)),
+                 anticedent1.FindPropertyRelative(nameof(FuzzyRulesList.FuzzyAnticedent.state)),
                  GUIContent.none
                 );
             return 215;
@@ -200,7 +219,7 @@ namespace FuzzyLogic
         {
             EditorGUI.PropertyField(
               new Rect(rect.x + currentOffset, rect.y, 50, EditorGUIUtility.singleLineHeight),
-              element.FindPropertyRelative(nameof(LogicalFuzzyRule.logicalRelationship)),
+              element.FindPropertyRelative(nameof(FuzzyRulesList.LogicalFuzzyRule.logicalRelationship)),
               GUIContent.none
              );
             return 55;
@@ -212,7 +231,7 @@ namespace FuzzyLogic
 
             EditorGUI.PropertyField(
                  new Rect(rect.x + currentOffset + 35, rect.y, 100, EditorGUIUtility.singleLineHeight),
-                 consiquent.FindPropertyRelative(nameof(FuzzyConsequent.output)),
+                 consiquent.FindPropertyRelative(nameof(FuzzyRulesList.FuzzyConsequent.output)),
                  GUIContent.none
                 );
 
@@ -220,7 +239,7 @@ namespace FuzzyLogic
 
             EditorGUI.PropertyField(
                  new Rect(rect.x + currentOffset + 155, rect.y, 40, EditorGUIUtility.singleLineHeight),
-                 consiquent.FindPropertyRelative(nameof(FuzzyConsequent.state)),
+                 consiquent.FindPropertyRelative(nameof(FuzzyRulesList.FuzzyConsequent.state)),
                  GUIContent.none
                 );
         }

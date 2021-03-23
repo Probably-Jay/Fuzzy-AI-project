@@ -9,6 +9,9 @@ namespace FuzzyLogic
     /// </summary>
     public class CrispInput 
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public CrispInput()
         {
             variables = new float[NumberOfVariables];
@@ -18,7 +21,14 @@ namespace FuzzyLogic
             variables = (float[])newValues.Clone();
         }
 
+        /// <summary>
+        /// The number of input variables in the system
+        /// </summary>
         public const int NumberOfVariables = 5;
+
+        /// <summary>
+        /// An enum representing the input variables of the system
+        /// </summary>
         public enum Inputs
         {
             Speed
@@ -64,8 +74,14 @@ namespace FuzzyLogic
             variables = (float[])newValues.Clone();
         }
 
-
+        /// <summary>
+        /// The number of output variables in the system
+        /// </summary>
         public const int NumberOfVariables = 2;
+
+        /// <summary>
+        /// An enum representing the output variables of the system
+        /// </summary>
         public enum Outputs
         {
             ForwardBackwards

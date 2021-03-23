@@ -40,9 +40,9 @@ namespace FuzzyLogic
         {
             switch (defuzificationMethod)
             {
-                case DefuzzificationMethod.Maximum:
+                case FuzzySystem.DefuzzificationMethod.Maximum:
                     return Maximum(fuzzyNumber);
-                case DefuzzificationMethod.CenterOfMass:
+                case FuzzySystem.DefuzzificationMethod.CenterOfMass:
                     return CenterOfMass(fuzzyNumber);
                 default:
                     return -1;
