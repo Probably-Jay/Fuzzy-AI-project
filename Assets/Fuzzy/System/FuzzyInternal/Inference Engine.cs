@@ -38,12 +38,12 @@ namespace FuzzyLogic
 
         private void ApplySimpleRules(FuzzyInputData fuzzyInput, List<FuzzyOutputData> unaggragatedFuzzyOuputs)
         {
-            foreach (SimpleFuzzyRule rule in fuzzyRules.simpleRules)
+            foreach (FuzzyRulesList.SimpleFuzzyRule rule in fuzzyRules.simpleRules)
             {
                 FuzzyOutputData fuzzyOutput = new FuzzyOutputData();
 
 
-                float value = GetValueOfPredicate(fuzzyInput, rule.predicate);
+                float value = GetValueOfAnticedent1(fuzzyInput, rule.anticedent);
 
                 fuzzyOutput[rule.consequent.output][rule.consequent.state] = value;
 
@@ -54,14 +54,14 @@ namespace FuzzyLogic
 
         private void ApplyLogicalRules(FuzzyInputData fuzzyInput, List<FuzzyOutputData> unaggragatedFuzzyOuputs)
         {
-            foreach (LogicalFuzzyRule rule in fuzzyRules.logicRules)
+            foreach (FuzzyRulesList.LogicalFuzzyRule rule in fuzzyRules.logicRules)
             {
                 FuzzyOutputData fuzzyOutput = new FuzzyOutputData();
 
-                float predicate1 = GetValueOfPredicate(fuzzyInput, rule.predicate1);
-                float predicate2 = GetValueOfPredicate(fuzzyInput, rule.predicate2);
+                float anticedent1 = GetValueOfAnticedent1(fuzzyInput, rule.anticedent1);
+                float anticedent2 = GetValueOfAnticedent1(fuzzyInput, rule.anticedent2);
 
-                float value = ApplyLogicalRelationshipToPredicateValues(predicate1, predicate2, rule.logicalRelationship);
+                float value = ApplyLogicalRelationshipToAnticedent1Values(anticedent1, anticedent2, rule.logicalRelationship);
 
                 fuzzyOutput[rule.consequent.output][rule.consequent.state] = value;
 
@@ -70,44 +70,44 @@ namespace FuzzyLogic
             }
         }
 
-        private static float GetValueOfPredicate(FuzzyInputData fuzzyInput, FuzzyPredicate predicate)
+        private static float GetValueOfAnticedent1(FuzzyInputData fuzzyInput, FuzzyRulesList.FuzzyAnticedent anticedent)
         {
             float value = 0;
-            switch (predicate.isOrIsNot)
+            switch (anticedent.isOrIsNot)
             {
-                case FuzzyPredicate.IsOrIsNot.Is:
-                    value = ValueIsRule(fuzzyInput, predicate);
+                case FuzzyRulesList.FuzzyAnticedent.IsOrIsNot.Is:
+                    value = ValueIsRule(fuzzyInput, anticedent);
                     break;
-                case FuzzyPredicate.IsOrIsNot.IsNot:
-                    value = ValueIsNotRule(fuzzyInput, predicate);
+                case FuzzyRulesList.FuzzyAnticedent.IsOrIsNot.IsNot:
+                    value = ValueIsNotRule(fuzzyInput, anticedent);
                     break;
             }
 
             return value;
         }
 
-        private float ApplyLogicalRelationshipToPredicateValues(float predicate1, float predicate2, FuzzyPredicate.Logic logicalRelationship)
+        private float ApplyLogicalRelationshipToAnticedent1Values(float anticedent1, float anticedent2, FuzzyRulesList.FuzzyAnticedent.LogicalRelationship logicalRelationship)
         {
             float value = 0;
             switch (logicalRelationship)
             {
-                case FuzzyPredicate.Logic.And:
-                    value = RelationshipIsAnd(predicate1, predicate2);
+                case FuzzyRulesList.FuzzyAnticedent.LogicalRelationship.And:
+                    value = RelationshipIsAnd(anticedent1, anticedent2);
                     break;
-                case FuzzyPredicate.Logic.Or:
-                    value = RelationshipIsOr(predicate1, predicate2);
+                case FuzzyRulesList.FuzzyAnticedent.LogicalRelationship.Or:
+                    value = RelationshipIsOr(anticedent1, anticedent2);
                     break;
             }
             return value;
         }
 
 
-        private static float ValueIsRule(FuzzyInputData fuzzyInput, FuzzyPredicate predicate) => fuzzyInput[predicate.input][predicate.state];
-        private static float ValueIsNotRule(FuzzyInputData fuzzyInput, FuzzyPredicate predicate) => (!fuzzyInput[predicate.input])[predicate.state];
+        private static float ValueIsRule(FuzzyInputData fuzzyInput, FuzzyRulesList.FuzzyAnticedent anticedent) => fuzzyInput[anticedent.input][anticedent.state];
+        private static float ValueIsNotRule(FuzzyInputData fuzzyInput, FuzzyRulesList.FuzzyAnticedent anticedent) => (!fuzzyInput[anticedent.input])[anticedent.state];
 
 
-        private static float RelationshipIsAnd(float predicate1, float predicate2) => Mathf.Min(predicate1, predicate2);
-        private static float RelationshipIsOr(float predicate1, float predicate2) => Mathf.Max(predicate1, predicate2);
+        private static float RelationshipIsAnd(float anticedent1, float anticedent2) => Mathf.Min(anticedent1, anticedent2);
+        private static float RelationshipIsOr(float anticedent1, float anticedent2) => Mathf.Max(anticedent1, anticedent2);
 
 
 

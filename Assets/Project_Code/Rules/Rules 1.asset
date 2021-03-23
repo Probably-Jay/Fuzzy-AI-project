@@ -13,121 +13,138 @@ MonoBehaviour:
   m_Name: Rules 1
   m_EditorClassIdentifier: 
   simpleRules:
-  - predicate:
+  - anticedent:
       input: 0
       isOrIsNot: 0
-      state: 2
-    consequent:
-      output: 0
-      state: 3
-  - predicate:
-      input: 0
-      isOrIsNot: 0
-      state: 3
+      state: 0
     consequent:
       output: 0
       state: 4
-  - predicate:
-      input: 1
-      isOrIsNot: 1
+  - anticedent:
+      input: 0
+      isOrIsNot: 0
       state: 0
     consequent:
       output: 0
-      state: 0
+      state: 4
   logicRules:
-  - predicate1:
-      input: 1
+  - anticedent1:
+      input: 0
       isOrIsNot: 0
-      state: 3
+      state: 0
     logicalRelationship: 0
-    predicate2:
-      input: 4
-      isOrIsNot: 0
-      state: 1
-    consequent:
-      output: 1
-      state: 1
-  - predicate1:
-      input: 1
-      isOrIsNot: 0
-      state: 3
-    logicalRelationship: 0
-    predicate2:
-      input: 4
+    anticedent2:
+      input: 0
       isOrIsNot: 0
       state: 0
     consequent:
       output: 1
       state: 1
-  - predicate1:
-      input: 1
+  - anticedent1:
+      input: 0
       isOrIsNot: 0
-      state: 2
+      state: 0
     logicalRelationship: 0
-    predicate2:
-      input: 4
+    anticedent2:
+      input: 0
       isOrIsNot: 0
+      state: 0
+    consequent:
+      output: 1
       state: 1
-    consequent:
-      output: 1
-      state: 0
-  - predicate1:
-      input: 1
+  - anticedent1:
+      input: 0
       isOrIsNot: 0
-      state: 2
+      state: 0
     logicalRelationship: 0
-    predicate2:
-      input: 4
+    anticedent2:
+      input: 0
       isOrIsNot: 0
       state: 0
     consequent:
       output: 1
       state: 0
-  - predicate1:
-      input: 1
+  - anticedent1:
+      input: 0
       isOrIsNot: 0
-      state: 3
+      state: 0
     logicalRelationship: 0
-    predicate2:
-      input: 4
+    anticedent2:
+      input: 0
       isOrIsNot: 0
-      state: 3
+      state: 0
+    consequent:
+      output: 1
+      state: 0
+  - anticedent1:
+      input: 0
+      isOrIsNot: 0
+      state: 0
+    logicalRelationship: 0
+    anticedent2:
+      input: 0
+      isOrIsNot: 0
+      state: 0
     consequent:
       output: 1
       state: 3
-  - predicate1:
-      input: 1
+  - anticedent1:
+      input: 0
       isOrIsNot: 0
-      state: 3
+      state: 0
     logicalRelationship: 0
-    predicate2:
-      input: 4
+    anticedent2:
+      input: 0
       isOrIsNot: 0
+      state: 0
+    consequent:
+      output: 1
+      state: 3
+  - anticedent1:
+      input: 0
+      isOrIsNot: 0
+      state: 0
+    logicalRelationship: 0
+    anticedent2:
+      input: 0
+      isOrIsNot: 0
+      state: 0
+    consequent:
+      output: 1
       state: 4
-    consequent:
-      output: 1
-      state: 3
-  - predicate1:
-      input: 1
+  - anticedent1:
+      input: 0
       isOrIsNot: 0
-      state: 2
+      state: 0
     logicalRelationship: 0
-    predicate2:
-      input: 4
+    anticedent2:
+      input: 0
       isOrIsNot: 0
-      state: 3
+      state: 0
     consequent:
       output: 1
       state: 4
-  - predicate1:
-      input: 1
+  - anticedent1:
+      input: 0
       isOrIsNot: 0
-      state: 2
-    logicalRelationship: 0
-    predicate2:
-      input: 4
+      state: 0
+    logicalRelationship: 1
+    anticedent2:
+      input: 0
       isOrIsNot: 0
-      state: 4
+      state: 0
+    consequent:
+      output: 1
+      state: 0
+  - anticedent1:
+      input: 0
+      isOrIsNot: 0
+      state: 0
+    logicalRelationship: 1
+    anticedent2:
+      input: 0
+      isOrIsNot: 0
+      state: 0
     consequent:
       output: 1
       state: 4
