@@ -61,7 +61,7 @@ MonoBehaviour:
       state: 0
     consequent:
       output: 1
-      state: 0
+      state: 1
   logicRules:
   - predicate1:
       input: 1
