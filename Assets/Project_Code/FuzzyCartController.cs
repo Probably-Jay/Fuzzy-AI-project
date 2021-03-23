@@ -33,18 +33,14 @@ public class FuzzyCartController : MonoBehaviour
         sensor = GetComponent<KartSensor>();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+
 
 
     /// <summary>
     /// Returns <c>(float, float)</c> tuple representing <see cref="FuzzyCartController.fuzzySystem"/>'s confidence that actions (drive, turn) should be taken, and the polarity of those actions. 
     /// Based off the current values from <see cref="FuzzyCartController.sensor"/>
     /// </summary>
-    /// <returns></returns>
+    /// <returns>A <c>(float, float)</c> tuple representing the actions (drive, turn)</returns>
     public (float, float) GetInstructions()
     {
         CrispInput input = GenerateInputFromSensors();
@@ -117,13 +113,13 @@ public class FuzzyCartController : MonoBehaviour
         return input;
     }
 
-    private float NormaliseSurfaceAngle(Vector3? surfaveNormal, float minAngle, float maxAngle)
+    private float NormaliseSurfaceAngle(Vector3? surfaceNormalInpt, float minAngle, float maxAngle)
     {
         float normalisedForwardSurfaceNormal;
-        if (surfaveNormal.HasValue)
+        if (surfaceNormalInpt.HasValue)
         {
             Vector2 ourNormal = -(new Vector2(sensor.KartForward.x, sensor.KartForward.z));
-            Vector2 surfaceNormal = new Vector2(surfaveNormal.Value.x, surfaveNormal.Value.z);
+            Vector2 surfaceNormal = new Vector2(surfaceNormalInpt.Value.x, surfaceNormalInpt.Value.z);
 
             var angle = Vector2.SignedAngle(surfaceNormal, ourNormal); // positive is to the right, negative is to the left
             //var angleMag = Mathf.Abs(angle);

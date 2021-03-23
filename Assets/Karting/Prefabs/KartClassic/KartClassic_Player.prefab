@@ -452,6 +452,7 @@ GameObject:
   - component: {fileID: 7412365025141639715}
   - component: {fileID: 9066478544039467508}
   - component: {fileID: 4908153231819459352}
+  - component: {fileID: 2724958478847269648}
   m_Layer: 2
   m_Name: KartClassic_Player
   m_TagString: Player
@@ -670,7 +671,29 @@ MonoBehaviour:
   Horizontal: Horizontal
   Vertical: Vertical
   fuzzyCartController: {fileID: 7412365025141639715}
+  RBSCartController: {fileID: 2724958478847269648}
   controlMode: 1
+--- !u!114 &2724958478847269648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3934862071804020761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 338a2596898699e4188d3b3c8058b4c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debug: 0
+  hightSpeed: 10
+  neutralSpeed: 0
+  largeForwardDistance: 10
+  neutralForwardDistance: 0
+  largeRightDistance: 10
+  neutralRightDistance: 0
+  largeLeftDistance: 10
+  neutralLeftDistance: 0
 --- !u!1 &3934862071846582731
 GameObject:
   m_ObjectHideFlags: 0
