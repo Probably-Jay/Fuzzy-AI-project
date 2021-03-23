@@ -47,12 +47,14 @@ public class KartSensor : MonoBehaviour
 
         if (hit.HasValue)
         {
-            return hit.Value.distance;
+            if (hit.Value.transform.gameObject.CompareTag("Track"))
+            {
+                return hit.Value.distance;
+            }
         }
-        else
-        {
-            return null;
-        }
+
+        return null;
+
     }
 
 

@@ -100,7 +100,7 @@ namespace FuzzyLogic
         /// <summary>
         /// If the fuzzy logic does not know what to do with an input (it has no rules relating to the provided argument) it will produce an invalid instruction, use this function to test for that
         /// </summary>
-        /// <param name="value">The value returned by <see cref="FuzzyLogic.FuzzySystem.FuzzyCompute(CrispInput)"/></param>
+        /// <param name="value">The value returned by <see cref="FuzzyLogic.FuzzySystem.EvaluateFuzzyLogic(CrispInput)"/></param>
         /// <returns>If the <paramref name="value"/> is valid</returns>
         public static bool ValidInstruction(float value) => !float.IsNaN(value);
 

@@ -41,6 +41,11 @@ namespace FuzzyLogic
             get { return variables[(int)InputVariable]; }
             set { variables[(int)InputVariable] = value; }
         }
+
+        /// <summary>
+        /// For use in <c>foreach</c> statements, get a list of each <see cref="FuzzyLogic.CrispInput.Inputs"/>
+        /// </summary>
+        public static Inputs[] InputEnumvalues => (Inputs[])System.Enum.GetValues(typeof(CrispInput.Inputs));
     } 
     
     
@@ -89,7 +94,7 @@ namespace FuzzyLogic
         }
 
         /// <summary>
-        /// If <see cref="FuzzyLogic.FuzzySystem.FuzzyCompute(CrispInput)"/> does not have any rules that correspond to it's input, it will return a value representing "Take no action". Use this function to test for that 
+        /// If <see cref="FuzzyLogic.FuzzySystem.EvaluateFuzzyLogic(CrispInput)"/> does not have any rules that correspond to it's input, it will return a value representing "Take no action". Use this function to test for that 
         /// </summary>
         /// <param name="variable">The variable in question</param>
         /// <returns>If that variable represents an action that should be taken</returns>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using FuzzyLogic;
+using System;
 
 [RequireComponent(typeof(KartSensor))]
 public class FuzzyCartController : MonoBehaviour
@@ -10,8 +11,10 @@ public class FuzzyCartController : MonoBehaviour
     private const int forwardMaxAngle = 90;
     KartSensor sensor;
 
+    [SerializeField] FuzzySystem fuzzySystem;
+
     [SerializeField] float hightSpeed = 10;
-    [SerializeField] float lowSpeed = 0;
+    [SerializeField] float neutralSpeed = 0;
 
     [SerializeField] float largeForwardDistance = 10;
     [SerializeField] float neutralForwardDistance = 0;   
@@ -22,7 +25,6 @@ public class FuzzyCartController : MonoBehaviour
     [SerializeField] float largeLeftDistance = 10;
     [SerializeField] float neutralLeftDistance = 0;
 
-    FuzzySystem fuzzySystem = new FuzzySystem();
 
     private void Awake()
     {
@@ -38,9 +40,46 @@ public class FuzzyCartController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         CrispInput input = GenerateInputFromSensors();
+        CrispOutput output = fuzzySystem.EvaluateFuzzyLogic(input);
 
+        if (!Input.GetKey(KeyCode.Space))
+        {
+            DebugOutLight(output);
+
+        }
+        else
+        {
+
+
+
+            DebugOutLots(input, output);
+        }
+
+
+    }
+
+    private void DebugOutLight(CrispOutput outputVals)
+    {
+        foreach (var output in CrispOutput.OutputEnumvalues)
+        {
+            Debug.Log($"Output: {output.ToString()} -> {outputVals[output]}");
+        }
+    }
+
+    private void DebugOutLots(CrispInput inputVals, CrispOutput outputVals)
+    {
+        Debug.Log("=====Case=====");
+        foreach (var input in CrispInput.InputEnumvalues)
+        {
+            Debug.Log($"Input: {input.ToString()} -> {inputVals[input]}");
+        }
+        Debug.Log("=====Ouputs=====");
+        foreach (var output in CrispOutput.OutputEnumvalues)
+        {
+            Debug.Log($"Output: {output.ToString()} -> {outputVals[output]}");
+        }
+        Debug.Log("=====End-Case=====");
     }
 
     private CrispInput GenerateInputFromSensors()
@@ -97,7 +136,7 @@ public class FuzzyCartController : MonoBehaviour
         return normalisedForwardSurfaceNormal;
     }
 
-    private float NormaliseSpeed(float speed) => FuzzyUtility.NormaliseValue(lowSpeed, hightSpeed, speed);
+    private float NormaliseSpeed(float speed) => FuzzyUtility.NormaliseValueUneven(-1, neutralSpeed, hightSpeed, speed);
 
     private float NormaliseDistance(float? unNormalisedDistance, float neutralDistance, float largeDistance)
     {

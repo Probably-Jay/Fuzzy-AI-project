@@ -451,6 +451,7 @@ GameObject:
   - component: {fileID: 5159474304760194895}
   - component: {fileID: 8129229389282824053}
   - component: {fileID: 7412365025141639715}
+  - component: {fileID: 9066478544039467508}
   m_Layer: 2
   m_Name: KartClassic_Player
   m_TagString: Player
@@ -644,6 +645,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a743c780fe2e474d835c55ebd9db005, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fuzzySystem: {fileID: 9066478544039467508}
+  hightSpeed: 10
+  lowSpeed: 0
+  largeForwardDistance: 10
+  neutralForwardDistance: 0
+  largeRightDistance: 10
+  neutralRightDistance: 0
+  largeLeftDistance: 10
+  neutralLeftDistance: 0
+--- !u!114 &9066478544039467508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3934862071804020761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e095b18b71b177c41add9f7e8fbd0112, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  functionCurve: {fileID: 11400000, guid: 061bd0688e86e6248838d4c5d18741d6, type: 2}
+  fuzzyRulesList: {fileID: 11400000, guid: c7305cfb5fd75fa4281616dd7a6b0f45, type: 2}
 --- !u!1 &3934862071846582731
 GameObject:
   m_ObjectHideFlags: 0

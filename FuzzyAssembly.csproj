@@ -63,17 +63,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Fuzzy\FuzzySystem.cs" />
-    <Compile Include="Assets\Scripts\Fuzzy\Input_Output\CrispInput.cs" />
-    <Compile Include="Assets\Scripts\Fuzzy\System\FuzzyInternal\Defuzzifier.cs" />
-    <Compile Include="Assets\Scripts\Fuzzy\System\FuzzyInternal\Fuzzifier.cs" />
-    <Compile Include="Assets\Scripts\Fuzzy\System\FuzzyInternal\Inference Engine.cs" />
-    <Compile Include="Assets\Scripts\Fuzzy\System\Rules\FunctionCurve.cs" />
-    <Compile Include="Assets\Scripts\Fuzzy\System\Rules\FuzzyRulesList.cs" />
-    <Compile Include="Assets\Scripts\Fuzzy\System\Structures\FuzzyData.cs" />
-    <Compile Include="Assets\Scripts\Fuzzy\System\Structures\FuzzyNumber.cs" />
-    <Compile Include="Assets\Scripts\Fuzzy\System\Structures\FuzzyUtility.cs" />
-    <None Include="Assets\Scripts\Fuzzy\FuzzyAssembly.asmdef" />
+    <Compile Include="Assets\Fuzzy\FuzzySystem.cs" />
+    <Compile Include="Assets\Fuzzy\Input_Output\CrispInput.cs" />
+    <Compile Include="Assets\Fuzzy\System\FuzzyInternal\Defuzzifier.cs" />
+    <Compile Include="Assets\Fuzzy\System\FuzzyInternal\Fuzzifier.cs" />
+    <Compile Include="Assets\Fuzzy\System\FuzzyInternal\Inference Engine.cs" />
+    <Compile Include="Assets\Fuzzy\System\Rules\FunctionCurve.cs" />
+    <Compile Include="Assets\Fuzzy\System\Rules\FuzzyRulesList.cs" />
+    <Compile Include="Assets\Fuzzy\System\Structures\FuzzyData.cs" />
+    <Compile Include="Assets\Fuzzy\System\Structures\FuzzyNumber.cs" />
+    <Compile Include="Assets\Fuzzy\System\Structures\FuzzyUtility.cs" />
+    <None Include="Assets\Fuzzy\FuzzyAssembly.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>D:/Program Files/UnityEditors/2019.4.18f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
