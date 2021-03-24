@@ -4,11 +4,18 @@ using UnityEngine;
 using FuzzyLogic;
 using System;
 
+/// <summary>
+/// Controller for the kart using the <see cref="FuzzyLogic"/> system
+/// </summary>
 [RequireComponent(typeof(KartSensor))]
 public class FuzzyCartController : MonoBehaviour
 {
     private const float forwardMinAngle = -90;
     private const int forwardMaxAngle = 90;
+
+    /// <summary>
+    /// The sensor that provides this class with data about the kart
+    /// </summary>
     KartSensor sensor;
 
     [SerializeField] FuzzySystem fuzzySystem;

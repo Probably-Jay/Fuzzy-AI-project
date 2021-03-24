@@ -2,28 +2,65 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Sensor system so the kart can know its state in the environment
+/// </summary>
 [RequireComponent(typeof(Rigidbody))]
 public class KartSensor : MonoBehaviour
 {
+    /// <summary>
+    /// Kart's <see cref="UnityEngine.Rigidbody"/> used to control physics
+    /// </summary>
     public Rigidbody rb { get; private set; }
 
+    /// <summary>
+    /// The maximum speed of the cart
+    /// </summary>
     public const float highSpeed = 10;
 
+    /// <summary>
+    /// Forward vector of the car
+    /// </summary>
     public Vector3 KartForward => transform.forward;
+    /// <summary>
+    /// Right vector of the car
+    /// </summary>
     public Vector3 KartRight => transform.right;
+    /// <summary>
+    /// Left vector of the car
+    /// </summary>
     public Vector3 KartLeft => -transform.right;
 
-
+    /// <summary>
+    /// The current speed of the car
+    /// </summary>
     public float Speed => rb.velocity.magnitude;
 
-
+    /// <summary>
+    /// The distance to the wall hit by the forward ray. Returns <c>null</c> if nothing is hit
+    /// </summary>
     public float? ForwardRayHitDistance => RayHitDistance(ForwardRay, forwardRayLength);
+    /// <summary>
+    /// The surface normal of the wall hit by the forward ray. Returns <c>null</c> if nothing was hit
+    /// </summary>
     public Vector3? ForwardRayCollisionNormal => RayHitSurfaceNormal(ForwardRay, forwardRayLength);
 
+    /// <summary>
+    /// The distance to the wall hit by the right ray. Returns <c>null</c> if nothing is hit
+    /// </summary>
     public float? RightRayHitDistance => RayHitDistance(RightRay, rightRayLength);
+    /// <summary>
+    /// The surface normal of the wall hit by the right ray. Returns <c>null</c> if nothing was hit
+    /// </summary>
     public Vector3? RightRayCollisionNormal => RayHitSurfaceNormal(RightRay, rightRayLength);
 
+    /// <summary>
+    /// The distance to the wall hit by the left ray. Returns <c>null</c> if nothing is hit
+    /// </summary>
     public float? LeftRayHitDistance => RayHitDistance(LeftRay, leftRayLength);
+    /// <summary>
+    /// The surface normal of the wall hit by the left ray. Returns <c>null</c> if nothing was hit
+    /// </summary>
     public Vector3? LeftRayCollisionNormal => RayHitSurfaceNormal(LeftRay, leftRayLength);
 
 
@@ -75,10 +112,6 @@ public class KartSensor : MonoBehaviour
 
 
 
-
-
-
-
     private Ray ForwardRay => new Ray(transform.position, KartForward);
     private float forwardRayLength = 10;
 
@@ -93,17 +126,7 @@ public class KartSensor : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     private void OnDrawGizmos()
     {

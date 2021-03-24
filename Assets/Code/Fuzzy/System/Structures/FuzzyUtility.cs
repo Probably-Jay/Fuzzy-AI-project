@@ -2,16 +2,21 @@
 
 namespace FuzzyLogic
 {
-
+    /// <summary>
+    /// Utility class for use by the <see cref="FuzzyLogic"/> system
+    /// </summary>
     public static class FuzzyUtility
     {
+        /// <summary>
+        /// Each state a fuzzy number can be in
+        /// </summary>
         public enum FuzzyStates
         {
-            LN
-            , MN
-            , Z
-            , MP
-            , LP
+            LN /// Large negative value
+            , MN /// Medium negative value
+            , Z /// Value close to zero
+            , MP /// Medium positive value
+            , LP /// large positive value
         }
 
         /// <summary>

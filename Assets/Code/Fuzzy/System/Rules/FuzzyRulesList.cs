@@ -12,7 +12,7 @@ using UnityEditorInternal;
 namespace FuzzyLogic
 {
     /// <summary>
-    /// Scriptable object that holds a rule base for use by 
+    /// Scriptable object that holds a rule base for use by <see cref="FuzzyLogic.InferenceEngine"/>
     /// </summary>
     [CreateAssetMenu(menuName = "Rules/Fuzzy Rules")]
     public class FuzzyRulesList : ScriptableObject
@@ -61,14 +61,14 @@ namespace FuzzyLogic
         {
             public enum IsOrIsNot
             {
-                Is
-                , IsNot
+                Is /// The <see cref="FuzzyLogic.FuzzyRulesList.FuzzyAnticedent.input"/> is in the <see cref="FuzzyLogic.FuzzyRulesList.FuzzyAnticedent.state"/>
+                , IsNot /// The <see cref="FuzzyLogic.FuzzyRulesList.FuzzyAnticedent.input"/> is not in the <see cref="FuzzyLogic.FuzzyRulesList.FuzzyAnticedent.state"/>
             }
 
             public enum LogicalRelationship
             {
-                And
-                , Or
+                And /// Will take the minimum of the two <see cref="FuzzyLogic.FuzzyRulesList.FuzzyAnticedent"/> 
+                , Or /// Will take the maximum of the two <see cref="FuzzyLogic.FuzzyRulesList.FuzzyAnticedent"/> 
             }
 
             public CrispInput.Inputs input;

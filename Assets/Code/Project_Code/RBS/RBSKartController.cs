@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Controller for the kart using a Rules Based System
+/// </summary>
 [RequireComponent(typeof(KartSensor))]
 public class RBSKartController : MonoBehaviour
 {
@@ -10,6 +13,9 @@ public class RBSKartController : MonoBehaviour
     private const float forwardMinAngle = -90;
     private const int forwardMaxAngle = 90;
 
+    /// <summary>
+    /// The sensor that provides this class with data about the kart
+    /// </summary>
     KartSensor sensor;
 
 
@@ -27,6 +33,9 @@ public class RBSKartController : MonoBehaviour
     [SerializeField] float largeLeftDistance = 10;
     [SerializeField] float neutralLeftDistance = 0;
 
+    /// <summary>
+    /// The inputs from <see cref="KartSensor"/>
+    /// </summary>
     public enum Inputs
     {
         Speed
