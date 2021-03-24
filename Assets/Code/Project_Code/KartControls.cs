@@ -66,6 +66,22 @@ public class KartControls : KartGame.KartSystems.BaseInput
 
     }
 
+    [SerializeField] private bool debugOveride = false;
+
+    private void Start()
+    {
+        if (debugOveride) return;
+
+        if(PlayerPrefs.GetInt("Fuzzy") == 0)
+        {
+            controlMode = ControlMode.RuleBasedSystem;
+        }
+        else
+        {
+            controlMode = ControlMode.Fuzzy;
+        }
+    }
+
     private Vector2 GetRBSInput()
     {
         var (turnInput, driveInput) = RBSCartController.GetInstructions();
