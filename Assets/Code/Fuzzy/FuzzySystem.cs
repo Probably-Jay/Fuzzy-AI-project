@@ -30,7 +30,7 @@ namespace FuzzyLogic
 
         [SerializeField] private FunctionCurve functionCurve;
         private FuzzyRulesList fuzzyRulesList;
-        private DefuzzificationMethod defuzzificationMethod;
+        [SerializeField] private DefuzzificationMethod defuzzificationMethod;
 
         /// <summary>
         /// The input curve used to fuzzify data

@@ -43,7 +43,7 @@ namespace FuzzyLogic
                 FuzzyOutputData fuzzyOutput = new FuzzyOutputData();
 
 
-                float value = GetValueOfAnticedent1(fuzzyInput, rule.anticedent);
+                float value = GetValueOfAnticedent(fuzzyInput, rule.anticedent);
 
                 fuzzyOutput[rule.consequent.output][rule.consequent.state] = value;
 
@@ -58,8 +58,8 @@ namespace FuzzyLogic
             {
                 FuzzyOutputData fuzzyOutput = new FuzzyOutputData();
 
-                float anticedent1 = GetValueOfAnticedent1(fuzzyInput, rule.anticedent1);
-                float anticedent2 = GetValueOfAnticedent1(fuzzyInput, rule.anticedent2);
+                float anticedent1 = GetValueOfAnticedent(fuzzyInput, rule.anticedent1);
+                float anticedent2 = GetValueOfAnticedent(fuzzyInput, rule.anticedent2);
 
                 float value = ApplyLogicalRelationshipToAnticedent1Values(anticedent1, anticedent2, rule.logicalRelationship);
 
@@ -70,7 +70,7 @@ namespace FuzzyLogic
             }
         }
 
-        private static float GetValueOfAnticedent1(FuzzyInputData fuzzyInput, FuzzyRulesList.FuzzyAnticedent anticedent)
+        private static float GetValueOfAnticedent(FuzzyInputData fuzzyInput, FuzzyRulesList.FuzzyAnticedent anticedent)
         {
             float value = 0;
             switch (anticedent.isOrIsNot)

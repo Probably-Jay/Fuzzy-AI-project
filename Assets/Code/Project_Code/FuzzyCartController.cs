@@ -45,6 +45,7 @@ public class FuzzyCartController : MonoBehaviour
         sensor = GetComponent<KartSensor>();
     }
 
+    // test initialiser
     private void Start()
     {
         {
@@ -66,7 +67,6 @@ public class FuzzyCartController : MonoBehaviour
             else
             {
                 fuzzySystem.DefuzzificationMethodMode = FuzzySystem.DefuzzificationMethod.Maximum;
-
             }
         }
     }
