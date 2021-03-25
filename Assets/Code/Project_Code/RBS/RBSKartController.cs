@@ -52,7 +52,7 @@ public class RBSKartController : MonoBehaviour
 
 
     /// <summary>
-    /// Returns <c>(float, float)</c> tuple representing this class' confidence that actions (drive, turn) should be taken, and the polarity of those actions. 
+    /// Calls <see cref="RBSKartController.EvaluateRules"/> to gather and return a <c>(float, float)</c> tuple representing this class' instructions that actions (drive, turn) should be taken, and the polarity of those actions. 
     /// </summary>
     /// <returns>A <c>(float, float)</c> tuple representing the actions (drive, turn)</returns>
     public (float, float) GetInstructions()
@@ -82,6 +82,9 @@ public class RBSKartController : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// The main function for running the RBS system. 
+    /// </summary>
     private (float, float) EvaluateRules(Dictionary<Inputs, float> input) => (EvaluateLeftRight(input), EvauateForward(input));
 
     private float EvaluateLeftRight(Dictionary<Inputs, float> input)
@@ -93,46 +96,49 @@ public class RBSKartController : MonoBehaviour
 
         var output = (value: 0f, sum: 0f);
 
-
+        // forward distance is large positive and surface normal is negative
         if (forwardDistance >= 5 && surfaceNormal < 0)
         {
             output.value += -1f; output.sum += 1;
-        } 
-        
+        }
+
+        // forward distance is small positive and surface normal is negative
         if (forwardDistance >= 0 && forwardDistance < 2.5f && surfaceNormal < 0)
         {
             output.value += -1f; output.sum += 1;
-        }  
-        
-        
+        }
+
+        // forward distance is large positive and surface normal is positive
         if (forwardDistance >= 5 && surfaceNormal > 0)
         {
             output.value += 1f; output.sum += 1;
-        } 
-        
+        }
+
+        // forward distance is small positive and surface normal is positive
         if (forwardDistance >= 0 && forwardDistance < 2.5f && surfaceNormal > 0)
         {
             output.value += 1f; output.sum += 1;
         }
 
-
+        // right distance is small positive or left distance is large negative (sentinal -1 value for "raycast hit nothing")
         if ((rightDistance < 1.25f && rightDistance > -0.1f) || leftDistance < -0.9f)
         {
             output.value += -1f; output.sum += 1;
         }
 
+        // left distance is small positive or right distance is large negative (sentinal -1 value for "raycast hit nothing")
         if ((leftDistance < 1.25f && leftDistance > -0.1f) || rightDistance < -0.9f)
         {
             output.value += +1f; output.sum += 1;
         }
 
 
-        return output.value / (output.sum != 0? output.sum : 1);
+        return output.sum != 0 ? (output.value / output.sum) : 0; // do not divide by 0
 
 
     }
 
-
+  
     private float EvauateForward(Dictionary<Inputs, float> input) => 1; // always drive
 
     private Dictionary<Inputs,float> GenerateInputFromSensors()
