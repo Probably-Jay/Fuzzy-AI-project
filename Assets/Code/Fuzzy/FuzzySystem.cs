@@ -29,8 +29,8 @@ namespace FuzzyLogic
         private Defuzzifier defuzzifier = new Defuzzifier();
 
         [SerializeField] private FunctionCurve functionCurve;
-        [SerializeField] private FuzzyRulesList fuzzyRulesList;
-        [SerializeField] private DefuzzificationMethod defuzzificationMethod;
+        private FuzzyRulesList fuzzyRulesList;
+        private DefuzzificationMethod defuzzificationMethod;
 
         /// <summary>
         /// The input curve used to fuzzify data
@@ -69,8 +69,8 @@ namespace FuzzyLogic
         {
             // init call to properties' setters
             FunctionCurve = functionCurve;
-            FuzzyRulesList = fuzzyRulesList;
-            DefuzzificationMethodMode = defuzzificationMethod;
+            //FuzzyRulesList = fuzzyRulesList;
+            //DefuzzificationMethodMode = defuzzificationMethod;
         }
 
         /// <summary>

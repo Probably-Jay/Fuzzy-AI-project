@@ -35,13 +35,41 @@ public class FuzzyCartController : MonoBehaviour
     [SerializeField] float largeLeftDistance = 10;
     [SerializeField] float neutralLeftDistance = 0;
 
+    [SerializeField] private FuzzyRulesList defaultRules;
+    [SerializeField] private FuzzyRulesList simplifiedRules;
+
+  //  [SerializeField] bool debugOveride = false;
 
     private void Awake()
     {
         sensor = GetComponent<KartSensor>();
     }
 
+    private void Start()
+    {
+        {
+            //if (debugOveride) return;
 
+            if (PlayerPrefs.GetInt("Rule") == 0)
+            {
+                fuzzySystem.FuzzyRulesList = defaultRules;
+            }
+            else
+            {
+                fuzzySystem.FuzzyRulesList = simplifiedRules;
+            }
+
+            if (PlayerPrefs.GetInt("Defuzz") == 0)
+            {
+                fuzzySystem.DefuzzificationMethodMode = FuzzySystem.DefuzzificationMethod.CenterOfMass;
+            }
+            else
+            {
+                fuzzySystem.DefuzzificationMethodMode = FuzzySystem.DefuzzificationMethod.Maximum;
+
+            }
+        }
+    }
 
 
     /// <summary>
